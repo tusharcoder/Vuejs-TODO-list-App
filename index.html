@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First App | Vuejs</title>
+    <style type="text/css">
+    html{
+        box-sizing: border-box;
+        font-family: sans-serif;
+        font-size: 1rem;
+    }
+    .todo__heading{
+        margin: auto;
+        text-align: center;
+    }
+
+    .todo__input{
+        margin: auto;
+        text-align: center;
+    }
+
+    #todo__input-box{
+        width: 70%;
+        height: 2rem;
+        margin: 1rem;
+        padding: 0.4rem 1rem;
+    }
+    .todo__input-button{
+        width: 8%;
+        margin: 1rem;
+        height: 2.5rem;
+    }
+    .todo__items{
+        margin: auto;
+        text-align: center;
+        list-style: none;
+        padding: 0px;
+        width: 50%;
+    }   
+    .todo__item{
+        margin: 0.8rem 0px;
+        height: 4rem;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .todo__item:first-of-type{
+        margin-top: 1rem;
+    }
+    .todo__item p{
+        display: inline-block;
+        width: 20rem;
+        margin: 0px 1rem;
+        background: #ccc;
+        height: 2rem;
+        line-height: 2rem;
+        border: 2px solid #000000;
+        border-radius: 4px;
+    }
+    .todo__item button{
+        width: 4rem;
+        height: 2rem;
+        border-radius: 4px;
+    }
+
+
+    </style>
+</head>
+<body>
+   <div id="app">
+       <div class="todo__heading">
+           <h1>My First TODO List</h1>
+       </div>
+       <div class="todo__input">
+        <input type="text" placeholder="Enter todo" id="todo__input-box" v-model="item"/><button class="todo__input-button" v-on:click="add">Add</button>
+       </div>
+       <ol class="todo__items">
+           <li class="todo__item" v-for="(todo_item,index) in todo_items"><p>{{todo_item}}</p> <button v-on:click="remove(index)">Remove</button></li>
+       </ol>
+   </div> 
+<!--Initializa the vue js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script type="text/javascript">
+const app = new Vue({
+    el:"#app",
+    data:{
+       "todo_items":[],
+       "item":""
+    },
+    methods: {
+       "add":function(){
+        this.todo_items.push(this.item);
+        this.item="";
+       },
+       "remove": function(index){
+            this.todo_items.splice(index,1);
+       }
+    },
+})
+</script>
+</body>
+</html>
